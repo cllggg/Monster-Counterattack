@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --sunny-orange: #FF8C42;
+  --battle-red: #FF4757;
+  --spirit-purple: #A55EEF;
+  --ink-black: #2F3542;
+  --cloud-white: #F7F9FC;
+}
+
+@theme {
+  --color-sunny-orange: var(--sunny-orange);
+  --color-battle-red: var(--battle-red);
+  --color-spirit-purple: var(--spirit-purple);
+  --color-ink-black: var(--ink-black);
+  --color-cloud-white: var(--cloud-white);
+  
+  --radius-4xl: 2rem;
+  --radius-5xl: 3rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  background-color: var(--cloud-white);
+  /* Mobile Viewport Fix */
+  overflow-x: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 强制清除一些可能导致网格感的默认样式 */
+* {
+  border-color: transparent;
+}
+
+/* Custom Scrollbar for Mobile Smoothness */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(200, 200, 200, 0.5);
+  border-radius: 10px;
+}
+
+/* Responsive Font Scaling for 2640x1216 (~400dpi phone) */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* Slightly smaller base font */
+  }
+  
+  .module-card {
+    aspect-ratio: 1/1 !important; /* Force square on mobile */
+  }
+
+  /* 针对手机端进一步优化容器间距 */
+  body {
+    padding: 0;
+  }
+  
+  .min-h-screen {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-aspect-ratio: 19/9) {
+  /* Ultra-wide phone screens (like 19.5:9) */
+  .app-container {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
